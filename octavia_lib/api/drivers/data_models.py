@@ -99,7 +99,7 @@ class LoadBalancer(BaseDataModel):
                  pools=Unset, project_id=Unset, vip_address=Unset,
                  vip_network_id=Unset, vip_port_id=Unset, vip_subnet_id=Unset,
                  vip_qos_policy_id=Unset, additional_vips=Unset,
-                 availability_zone=Unset):
+                 availability_zone=Unset, operating_status=Unset):
 
         self.admin_state_up = admin_state_up
         self.description = description
@@ -116,6 +116,7 @@ class LoadBalancer(BaseDataModel):
         self.vip_qos_policy_id = vip_qos_policy_id
         self.additional_vips = additional_vips
         self.availability_zone = availability_zone
+        self.operating_status = operating_status
 
 
 class Listener(BaseDataModel):
@@ -133,7 +134,7 @@ class Listener(BaseDataModel):
                  client_authentication=Unset, client_crl_container_ref=Unset,
                  client_crl_container_data=Unset, project_id=Unset,
                  allowed_cidrs=Unset, tls_versions=Unset, tls_ciphers=Unset,
-                 alpn_protocols=Unset):
+                 alpn_protocols=Unset, operating_status=Unset):
 
         self.admin_state_up = admin_state_up
         self.connection_limit = connection_limit
@@ -165,6 +166,7 @@ class Listener(BaseDataModel):
         self.tls_versions = tls_versions
         self.tls_ciphers = tls_ciphers
         self.alpn_protocols = alpn_protocols
+        self.operating_status = operating_status
 
 
 class Pool(BaseDataModel):
@@ -177,7 +179,7 @@ class Pool(BaseDataModel):
                  ca_tls_container_data=Unset, crl_container_ref=Unset,
                  crl_container_data=Unset, tls_enabled=Unset,
                  project_id=Unset, tls_versions=Unset, tls_ciphers=Unset,
-                 alpn_protocols=Unset):
+                 alpn_protocols=Unset, operating_status=Unset):
 
         self.admin_state_up = admin_state_up
         self.description = description
@@ -201,13 +203,15 @@ class Pool(BaseDataModel):
         self.tls_versions = tls_versions
         self.tls_ciphers = tls_ciphers
         self.alpn_protocols = alpn_protocols
+        self.operating_status = operating_status
 
 
 class Member(BaseDataModel):
     def __init__(self, address=Unset, admin_state_up=Unset, member_id=Unset,
                  monitor_address=Unset, monitor_port=Unset, name=Unset,
                  pool_id=Unset, protocol_port=Unset, subnet_id=Unset,
-                 weight=Unset, backup=Unset, project_id=Unset):
+                 weight=Unset, backup=Unset, project_id=Unset,
+                 operating_status=Unset):
 
         self.address = address
         self.admin_state_up = admin_state_up
@@ -221,6 +225,7 @@ class Member(BaseDataModel):
         self.weight = weight
         self.backup = backup
         self.project_id = project_id
+        self.operating_status = operating_status
 
 
 class HealthMonitor(BaseDataModel):
@@ -228,7 +233,7 @@ class HealthMonitor(BaseDataModel):
                  healthmonitor_id=Unset, http_method=Unset, max_retries=Unset,
                  max_retries_down=Unset, name=Unset, pool_id=Unset,
                  timeout=Unset, type=Unset, url_path=Unset, http_version=Unset,
-                 domain_name=Unset, project_id=Unset):
+                 domain_name=Unset, project_id=Unset, operating_status=Unset):
 
         self.admin_state_up = admin_state_up
         self.delay = delay
@@ -245,6 +250,7 @@ class HealthMonitor(BaseDataModel):
         self.http_version = http_version
         self.domain_name = domain_name
         self.project_id = project_id
+        self.operating_status = operating_status
 
 
 class L7Policy(BaseDataModel):

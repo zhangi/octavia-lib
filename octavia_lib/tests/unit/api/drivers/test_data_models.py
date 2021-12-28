@@ -46,6 +46,7 @@ class TestProviderDataModels(base.TestCase):
         self.l7policy_id = uuidutils.generate_uuid()
         self.l7rule_id = uuidutils.generate_uuid()
         self.availability_zone = uuidutils.generate_uuid()
+        self.operating_status = 'ONLINE'
 
         self.ref_l7rule = data_models.L7Rule(
             admin_state_up=True,
@@ -110,7 +111,8 @@ class TestProviderDataModels(base.TestCase):
             tls_ciphers=None,
             alpn_protocols=[constants.ALPN_PROTOCOL_HTTP_1_0,
                             constants.ALPN_PROTOCOL_HTTP_1_1,
-                            constants.ALPN_PROTOCOL_HTTP_2])
+                            constants.ALPN_PROTOCOL_HTTP_2],
+            operating_status='ONLINE')
 
         self.ref_lb = data_models.LoadBalancer(
             admin_state_up=False,
@@ -125,7 +127,8 @@ class TestProviderDataModels(base.TestCase):
             vip_port_id=self.vip_port_id,
             vip_subnet_id=self.vip_subnet_id,
             vip_qos_policy_id=self.vip_qos_policy_id,
-            availability_zone=self.availability_zone)
+            availability_zone=self.availability_zone,
+            operating_status='ONLINE')
 
         self.ref_vip = data_models.VIP(
             vip_address=self.vip_address,
@@ -146,7 +149,8 @@ class TestProviderDataModels(base.TestCase):
             protocol_port=80,
             subnet_id=self.mem_subnet_id,
             weight=1,
-            backup=False)
+            backup=False,
+            operating_status='ONLINE')
 
         self.ref_healthmonitor = data_models.HealthMonitor(
             admin_state_up=False,
@@ -163,7 +167,8 @@ class TestProviderDataModels(base.TestCase):
             type='HTTP',
             url_path='/test',
             http_version=1.1,
-            domain_name='testdomainname.com')
+            domain_name='testdomainname.com',
+            operating_status='ONLINE')
 
         self.ref_pool = data_models.Pool(
             admin_state_up=True,
@@ -186,7 +191,8 @@ class TestProviderDataModels(base.TestCase):
             tls_ciphers=None,
             alpn_protocols=[constants.ALPN_PROTOCOL_HTTP_1_0,
                             constants.ALPN_PROTOCOL_HTTP_1_1,
-                            constants.ALPN_PROTOCOL_HTTP_2])
+                            constants.ALPN_PROTOCOL_HTTP_2],
+            operating_status='ONLINE')
 
         self.ref_l7rule_dict = {'admin_state_up': True,
                                 'compare_type': 'STARTS_WITH',
@@ -223,7 +229,8 @@ class TestProviderDataModels(base.TestCase):
                             'vip_subnet_id': self.vip_subnet_id,
                             'name': 'favorite_lb',
                             'vip_qos_policy_id': self.vip_qos_policy_id,
-                            'availability_zone': self.availability_zone}
+                            'availability_zone': self.availability_zone,
+                            'operating_status': self.operating_status}
 
         self.ref_listener_dict = {
             'admin_state_up': True,
@@ -262,7 +269,8 @@ class TestProviderDataModels(base.TestCase):
             'tls_ciphers': None,
             'alpn_protocols': [constants.ALPN_PROTOCOL_HTTP_1_0,
                                constants.ALPN_PROTOCOL_HTTP_1_1,
-                               constants.ALPN_PROTOCOL_HTTP_2]}
+                               constants.ALPN_PROTOCOL_HTTP_2],
+            'operating_status': 'ONLINE'}
 
         self.ref_lb_dict_with_listener = {
             'admin_state_up': False,
@@ -277,7 +285,8 @@ class TestProviderDataModels(base.TestCase):
             'vip_port_id': self.vip_port_id,
             'vip_subnet_id': self.vip_subnet_id,
             'vip_qos_policy_id': self.vip_qos_policy_id,
-            'availability_zone': self.availability_zone}
+            'availability_zone': self.availability_zone,
+            'operating_status': 'ONLINE'}
 
         self.ref_vip_dict = {
             'vip_address': self.vip_address,
@@ -298,7 +307,8 @@ class TestProviderDataModels(base.TestCase):
             'protocol_port': 80,
             'subnet_id': self.mem_subnet_id,
             'weight': 1,
-            'backup': False}
+            'backup': False,
+            'operating_status': 'ONLINE'}
 
         self.ref_healthmonitor_dict = {
             'admin_state_up': False,
@@ -315,7 +325,8 @@ class TestProviderDataModels(base.TestCase):
             'type': 'HTTP',
             'url_path': '/test',
             'http_version': 1.1,
-            'domain_name': 'testdomainname.com'}
+            'domain_name': 'testdomainname.com',
+            'operating_status': 'ONLINE'}
 
         self.ref_pool_dict = {
             'admin_state_up': True,
@@ -338,7 +349,8 @@ class TestProviderDataModels(base.TestCase):
             'tls_ciphers': None,
             'alpn_protocols': [constants.ALPN_PROTOCOL_HTTP_1_0,
                                constants.ALPN_PROTOCOL_HTTP_1_1,
-                               constants.ALPN_PROTOCOL_HTTP_2]}
+                               constants.ALPN_PROTOCOL_HTTP_2],
+            'operating_status': 'ONLINE'}
 
     def test_equality(self):
         second_ref_lb = deepcopy(self.ref_lb)
@@ -465,7 +477,8 @@ class TestProviderDataModels(base.TestCase):
             vip_port_id=self.vip_port_id,
             vip_subnet_id=self.vip_subnet_id,
             vip_qos_policy_id=self.vip_qos_policy_id,
-            availability_zone=self.availability_zone)
+            availability_zone=self.availability_zone,
+            operating_status='ONLINE')
 
         ref_lb_dict_with_listener = deepcopy(self.ref_lb_dict_with_listener)
         ref_lb_dict_with_listener['pools'] = None
